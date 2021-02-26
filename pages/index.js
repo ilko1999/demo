@@ -14,12 +14,13 @@ const Home = () => {
 
       <main className={styles.main}>
         
-        <button className = {styles.card} style = {{cursor: "pointer"}} onClick = {(e) => auth.signinWithGitHub()}>Sign In!</button>
 
         {auth?.user && (<img src = {auth?.user?.photoURL} className = {styles.card}></img>)}        
         {auth?.user && (<div className = {styles.code}>{auth?.user?.email}</div>)}
         
-        {auth?.user && (<button className = {styles.card} style = {{cursor: "pointer"}} onClick = {(e) => auth.signout()}>Sign Out!</button>)}
+        {auth.user ? (<button className = {styles.card} style = {{cursor: "pointer"}} onClick = {(e) => auth.signout()}>Sign Out!</button>) : (
+          <button className = {styles.card} style = {{cursor: "pointer"}} onClick = {(e) => {auth.signinWithGitHub()}}>Sign In!</button>
+        )}
       </main>
 
       <footer className={styles.footer}>
